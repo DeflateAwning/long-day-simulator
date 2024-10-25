@@ -40,7 +40,11 @@ def convert_local_to_utc(dt: datetime) -> datetime:
     # print(f"Converted {dtz_local} to {dtz_utc}")
     return dtz_utc.replace(tzinfo=None)
 
-def write_to_ics_files(sleep_periods: list[Period], awake_periods: list[Period], periods_to_include: set[Literal['awake', 'sleep']], ics_file: Union[str, Path]):
+def write_to_ics_files(
+    sleep_periods: list[Period], awake_periods: list[Period],
+    periods_to_include: set[Literal['awake', 'sleep']],
+    ics_file: Union[str, Path]
+):
     c = Calendar()
 
     if 'sleep' in periods_to_include:
