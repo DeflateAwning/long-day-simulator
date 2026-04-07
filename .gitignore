@@ -1,4 +1,5 @@
 # Project-Specific
 *.ics
 
-target/
+# Added by cargo
+/target
