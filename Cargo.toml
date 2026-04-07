@@ -1,7 +1,10 @@
 [package]
 name = "long_day_simulator"
-version = "0.1.0"
+description = "Generate ICS Calendary: What if days were 25h instead of 24? You'd get an extra hour each day, just by shifting your bedtime an hour later each night."
+version = "0.1.1"
 edition = "2024"
+license = "Unlicense"
+repository = "https://github.com/DeflateAwning/long-day-simulator"
 
 [dependencies]
 clap = { version = "=4.4.18", features = ["derive"] }
