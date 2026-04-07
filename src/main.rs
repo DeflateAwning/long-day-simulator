@@ -172,3 +172,48 @@ fn main() {
         cli.output.display()
     );
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::env::temp_dir;
+
+    #[test]
+    fn test_default_config_generates_ics_file() {
+        let output = temp_dir().join("long_day_simulator_test.ics");
+
+        let cli = Cli {
+            bedtime: "01:30".to_string(),
+            start_date: Some("2026-01-01".to_string()),
+            sleep_hours: 8.0,
+            day_length_hours: 25.0,
+            days: 30,
+            output: output.clone(),
+            include: vec!["sleep".to_string()],
+        };
+
+        let (sleep_periods, awake_periods) = run_sim(&cli);
+        write_to_ics(&sleep_periods, &awake_periods, &cli.include, &cli.output);
+
+        assert!(output.exists(), "ICS file was not created");
+        assert!(output.metadata().unwrap().len() > 0, "ICS file is empty");
+
+        let contents = std::fs::read_to_string(&output).unwrap();
+        assert!(contents.contains("BEGIN:VCALENDAR"));
+        assert!(contents.contains("SUMMARY:Sleep"));
+        assert!(!contents.contains("SUMMARY:Awake"));
+
+        // 30-day sim with a 25h day: expect roughly 28-29 sleep periods
+        assert!(!sleep_periods.is_empty());
+        assert_eq!(awake_periods.len(), sleep_periods.len());
+        for p in &sleep_periods {
+            assert_eq!(
+                p.duration(),
+                Duration::hours(8),
+                "each sleep period should be exactly 8h"
+            );
+        }
+
+        std::fs::remove_file(&output).ok();
+    }
+}
