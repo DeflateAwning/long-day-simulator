@@ -17,6 +17,10 @@ The exported calendar is in ICS format, and can be imported to Google Calendar (
 
 ### Installation
 
+First, install Rust/`cargo` by following the instructions at: https://rustup.rs.
+
+Next, install this tool:
+
 ```sh
 cargo install long_day_simulator
 ```
