@@ -5,6 +5,10 @@ This script generates calendar events which mark the awake and asleep times in a
 
 The exported calendar is in ICS format, and can be imported to Google Calendar (and others) easily.
 
+## Example
+
+![Example imported into Google Calendar](./docs/example_calendar.png)
+
 ## Overall Stats
 
 * Instead of sleeping 8h out of 24h (33.3% of the time, 240 hours per month), you're instead sleeping 8h out of 25h (32% of the time, 230.4 hours per month).
