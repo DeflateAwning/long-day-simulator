@@ -8,3 +8,11 @@ The exported calendar is in ICS format, and can be imported to Google Calendar (
 ## Overall Stats
 
 * Instead of sleeping 8h out of 24h (33.3% of the time, 240 hours per month), you're instead sleeping 8h out of 25h (32% of the time, 230.4 hours per month).
+
+## How to Use
+
+1. Install `uv`.
+2. Clone this repository.
+3. Run `uv venv`.
+4. Run `uv sync`.
+5. Run `uv run main.py`

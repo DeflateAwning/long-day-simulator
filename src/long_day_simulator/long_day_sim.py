@@ -1,12 +1,12 @@
-from datetime import datetime, time, timedelta, date, timezone
-import dataclasses
-from typing import Literal, Union
+from dataclasses import dataclass
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
+from typing import Literal, Union
 
 from ics import Calendar, Event  # pyright: ignore[reportMissingTypeStubs]
 
 
-@dataclasses.dataclass
+@dataclass
 class SimConfig:
     bedtime_on_start_day: time
     start_day: date  # "today"
@@ -19,7 +19,7 @@ class SimConfig:
         return self.day_length - self.sleep_duration
 
 
-@dataclasses.dataclass
+@dataclass
 class Period:
     start: datetime
     end: datetime
@@ -111,5 +111,9 @@ def run_sim_print_data(sim_config: SimConfig):
     )
 
 
-if __name__ == "__main__":
+def main() -> None:
     run_sim_print_data(default_sim_config)
+
+
+if __name__ == "__main__":
+    main()
